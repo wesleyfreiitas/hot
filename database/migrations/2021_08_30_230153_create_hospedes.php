@@ -16,11 +16,11 @@ class CreateHospedes extends Migration
         Schema::create('hospedes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('rg');
+            $table->string('rg')->nullable();
             $table->string('cpf');
             $table->string('email')->unique();
-            $table->date('nascimento');
-            $table->string('telefone');
+            $table->date('nascimento')->nullable();
+            $table->string('telefone')->nullable();
             $table->string('estado');
             $table->string('cidade');
             $table->string('rua');

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Produto;
+
+use App\Categoria;
+
 use Illuminate\Http\Request;
 
-class ControleIndicadores extends Controller
+class ControladorProduto extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,14 @@ class ControleIndicadores extends Controller
      */
     public function index()
     {
-        return view('indicadores');
+        /*Dentro do with devo informar em um array o que deve ser carregado*/
+        $produto = Produto::with(['categoria'])->get();
+        return $produto->toJson();
+    }
+
+    public function indexJSON()
+    {
+        return view('produtos');
     }
 
     /**
@@ -35,7 +45,13 @@ class ControleIndicadores extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = new Produto();
+        $produto->nome = $request->input('nome');
+        $produto->categoria_id = $request->input('categoria_id');
+        $produto->estoque = $request->input('estoque');
+        $produto->preco = $request->input('preco');
+        $produto->save();
+        return json_encode($produto);
     }
 
     /**
@@ -46,7 +62,11 @@ class ControleIndicadores extends Controller
      */
     public function show($id)
     {
-        //
+        $produto = Produto::find($id);
+        if (isset($produto)){
+            return json_encode($produto);
+        }
+        return view('404');
     }
 
     /**
@@ -69,7 +89,15 @@ class ControleIndicadores extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produto = Produto::find($id);
+        if (isset($produto)){
+            $produto->nome = $request->input('nome');
+            $produto->estoque = $request->input('estoque');
+            $produto->preco = $request->input('preco');
+            $produto->save();
+            return json_encode($produto);
+        }
+        return view('404');
     }
 
     /**
@@ -80,6 +108,11 @@ class ControleIndicadores extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produto = Produto::find($id);
+        if(isset($produto)){
+            $produto->delete();
+            return response('OK', 200);
+        }
+        return view('404');
     }
 }

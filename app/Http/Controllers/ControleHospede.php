@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Hospede;
 
+use App\Quarto;
+
+use App\Comanda;
+
 class ControleHospede extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function indexView()
     {
         return view('hospedes');
@@ -42,17 +43,17 @@ class ControleHospede extends Controller
     {
         $hosp = new Hospede();
         $hosp->nome = $request->input('nome');
-        $hosp->rg = $request->input('rg');
+        //$hosp->rg = $request->input('rg');
         $hosp->cpf = $request->input('cpf');
         $hosp->email = $request->input('email');
-        $hosp->nascimento = $request->input('nascimento');
-        $hosp->telefone = $request->input('telefone');
+        //$hosp->nascimento = $request->input('nascimento');
+        //$hosp->telefone = $request->input('telefone');
         $hosp->estado = $request->input('estado');
         $hosp->cidade = $request->input('cidade');
         $hosp->rua = $request->input('rua');
         $hosp->bairro = $request->input('bairro');
         $hosp->cep = $request->input('cep');
-        $hosp->complemento = $request->input('complemento');
+        //$hosp->complemento = $request->input('complemento');
         $hosp->save();
         return json_encode($hosp);
     }
@@ -95,17 +96,17 @@ class ControleHospede extends Controller
         $hosp = Hospede::find($id);
         if (isset($hosp)){
             $hosp->nome = $request->input('nome');
-            $hosp->rg = $request->input('rg');
+            //$hosp->rg = $request->input('rg');
             $hosp->cpf = $request->input('cpf');
             $hosp->email = $request->input('email');
-            $hosp->nascimento = $request->input('nascimento');
-            $hosp->telefone = $request->input('telefone');
+            //$hosp->nascimento = $request->input('nascimento');
+            //$hosp->telefone = $request->input('telefone');
             $hosp->estado = $request->input('estado');
             $hosp->cidade = $request->input('cidade');
             $hosp->rua = $request->input('rua');
             $hosp->bairro = $request->input('bairro');
             $hosp->cep = $request->input('cep');
-            $hosp->complemento = $request->input('complemento');
+            //$hosp->complemento = $request->input('complemento');
             $hosp->save();
             return json_encode($hosp);
         }

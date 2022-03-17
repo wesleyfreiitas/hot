@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Quarto;
 
+use App\Hospede;
+
+use App\Comanda;
+
 class ControleQuarto extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function indexView()
     {
         return view('quartos');
@@ -26,7 +27,6 @@ class ControleQuarto extends Controller
     {
         $quarto = Quarto::all();
         return $quarto->toJson();
-
     }
 
     /**
@@ -50,6 +50,7 @@ class ControleQuarto extends Controller
         $quarto = new Quarto();
         $quarto->nome = $request->input('nome');
         $quarto->vlr_diaria = $request->input('vlr_diaria');
+        $quarto->status = $request->input('status');
         $quarto->save();
         return json_encode($quarto);
     }

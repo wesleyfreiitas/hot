@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Comanda;
+use App\Hospede;
+use App\Quarto;
 
 class ControleComanda extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +24,7 @@ class ControleComanda extends Controller
 
     public function index()
     {
-        $comanda = Comanda::with(['quarto','hospede'])->get();
-        //$reserva = Reserva::all();
+        $comanda = Comanda::with(['hospede','quarto'])->get();
         return $comanda->toJson();
     }
 
@@ -54,8 +53,8 @@ class ControleComanda extends Controller
         $comanda->obs = $request->input('obs');
         $comanda->quarto_id = $request->input('quarto_id');
         $comanda->hospede_id = $request->input('hospede_id');
-        $comanda->crianca = $request->input('crianca');
-        $comanda->adulto = $request->input('adulto');
+        //$comanda->crianca = $request->input('crianca');
+        //$comanda->adulto = $request->input('adulto');
         $comanda->desconto = $request->input('desconto');
         $comanda->desconto = $request->input('acrescimo');
         $comanda->total_pagar = $request->input('total_pagar');

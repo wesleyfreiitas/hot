@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/categorias','ControladorCategoria@indexJSON');
+
+Route::get('/produtos', 'ControladorProduto@indexJSON');
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/hospedes','ControleHospede@indexView');
@@ -27,3 +31,7 @@ Route::get('/hospedes','ControleHospede@indexView');
 Route::get('/quartos','ControleQuarto@indexView');
 
 Route::get('/reservas','ControleComanda@indexView');
+
+Route::get('/indicadores','ControleIndicadores@index');
+
+Route::get('/transaction','ControleTransaction@index');

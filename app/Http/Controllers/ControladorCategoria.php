@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
+
+use App\Produto;
+
 use Illuminate\Http\Request;
 
-class ControleIndicadores extends Controller
+class ControladorCategoria extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,13 @@ class ControleIndicadores extends Controller
      */
     public function index()
     {
-        return view('indicadores');
+        $categoria = Categoria::all();
+        return $categoria->toJson();
+    }
+
+    public function indexJSON()
+    {
+        return view('categorias');
     }
 
     /**
@@ -35,7 +44,10 @@ class ControleIndicadores extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Categoria();
+        $categoria->nome = $request->input('nome');
+        $categoria->save();
+        return json_encode($categoria);
     }
 
     /**
@@ -46,7 +58,11 @@ class ControleIndicadores extends Controller
      */
     public function show($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        if (isset($categoria)){
+            return json_encode($categoria);
+        }
+        return view('404');
     }
 
     /**
@@ -69,7 +85,13 @@ class ControleIndicadores extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        if (isset($categoria)){
+            $categoria->nome = $request->input('nome');
+            $categoria->save();
+            return json_encode($categoria);
+        }
+        return view('404');
     }
 
     /**
@@ -80,6 +102,11 @@ class ControleIndicadores extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        if(isset($categoria)){
+            $categoria->delete();
+            return response('OK', 200);
+        }
+        return view('404');
     }
 }
