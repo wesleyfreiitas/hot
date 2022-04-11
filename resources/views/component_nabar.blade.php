@@ -1,3 +1,4 @@
+
 <div class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
@@ -14,22 +15,22 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" v-pre><i class="fas fa-user fa-fw"> </i> {{ Auth::user()->name }} <span class="caret"></span></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" v-pre><i class="fas fa-user fa-fw"> </i> {{ Auth::user()->name }} <span class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Activity Log</a></li>
+                <li><a class="dropdown-item" href="{{ asset('/configuracoes') }}">Settings</a></li>
+                <!--<li><a class="dropdown-item" href="">Activity Log</a></li>-->
                 <li><hr class="dropdown-divider" /></li>
                 <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </li>
     </ul>
@@ -73,8 +74,8 @@
                             <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="{{ asset('/transaction') }}">LIVRO CAIXA</a>
-                                    <a class="nav-link" href="register.html">Register</a>
-                                    <a class="nav-link" href="password.html">Forgot Password</a>
+                                    <a class="nav-link" href="{{ asset('/register') }}">Register</a>
+                                    <a class="nav-link" href="{{ asset('/password/reset') }}">Forgot Password</a>
                                 </nav>
                             </div>
                             <!--<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -107,5 +108,6 @@
             </div>
         </nav>
     </div>
+    
 
 

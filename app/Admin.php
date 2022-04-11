@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable;
+/*O campo abaixo informa que este modelo deve alimentar o guard modificado dentro
+     do config > auth*/
 
+     protected $guard = 'admin';
     /**
      * The attributes that are mass assignable.
      *

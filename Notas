@@ -1,3 +1,11 @@
 Aula 73 ensina a fazer o active
 Voltar sessão 9
 Aula 85 a 90 são de validação e costumização de mensagem de erro.
+
+
+para login via api 
+usar composer require laravel/passport
+php artisan migrate
+php artisan passport:install
+
+acesso app providers authserviceproviders
