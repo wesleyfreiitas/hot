@@ -21,11 +21,12 @@ class AutenticadorControlador extends Controller
             'email' => $request->email,
             //Armazenei a senha no bcrypt que devolverá uma string
             'password' => bcrypt($request->password),
+            //gerando o token que será usado na comunicação por email
             'token' => str_random(60)
         ]);
         $user->save();
         
-        //event(new EventNovoRegistro($user));
+        event(new EventNovoRegistro($user));
 
         return response()->json([
             'res'=>'Usuario criado com sucesso'
@@ -39,9 +40,9 @@ class AutenticadorControlador extends Controller
         $credenciais = [
             'email' => $request->email,
             'password' => $request->password,
-            //'active' => 1
+            'active' => 1
         ];
-//A função attempt retorna um boolean true ou false
+        //A função attempt retorna um boolean true ou false
         if (!Auth::attempt($credenciais))
             return response()->json([
                 //Mensagem enviada em caso de retorno falso da função attempt
@@ -64,5 +65,17 @@ class AutenticadorControlador extends Controller
         return response()->json([
             'res' => 'Deslogado com sucesso'
         ]);
+    }
+    public function ativarregistro($id, $token) {
+        $user = User::find($id);
+        if ($user) {
+            if ($user->token == $token) {
+                $user->active = true;
+                $user->token = '';
+                $user->save();
+                return view('registroativo');
+            }
+        }
+        return view('registroerro');
     }
 }

@@ -15,9 +15,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
+        /*Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
+        ],*/
+        //cadastrando o evento e o listener que será usado
+        //determinando a pasta que ele vai ser salvo após rodar comando
+        //será executado no momento que cadastrar a conta dela
+        'App\Events\EventNovoRegistro' => [
+            'App\Listeners\ListenerConfirmacaoEmail',
+        ]
+
     ];
 
     /**
