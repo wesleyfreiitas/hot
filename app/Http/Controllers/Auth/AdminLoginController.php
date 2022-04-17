@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Auth;
-
+use App\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 use App\Http\Controllers\Controller;
 
 class AdminLoginController extends Controller
@@ -35,4 +37,8 @@ class AdminLoginController extends Controller
     public function index(){
         return view('auth.admin-login');
     }
+    public function recovery(){
+        return view('auth.passwords.admin-email');
+    }
+    
 }

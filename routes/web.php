@@ -26,8 +26,10 @@ Route::get('/admin','ControleIndicadores@index')->name('admin.dashboard');
 
 Route::get('/admin/login', 'Auth\AdminLoginController@index')->name('admin.login');
 
+Route::get('/admin/password/reset', 'Auth\AdminLoginController@recovery')->name('admin.recovery');
+
+Route::get('/admin/register', 'AdminRegisterController@index')->name('admin.register');
+
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
 
-Route::get('/configuracoes', function () {
-    return view('404');
-})->name('configuracoes');
+Route::post('/admin/register', 'AdminRegisterController@registro')->name('admin.register.submit');

@@ -9,9 +9,9 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Criar conta</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Cadastro de administrador</h3></div>
                                     <div class="card-body">
-                                        <form method="post" action="{{route('register')}}">
+                                        <form method="post" action="{{route('admin.register.submit')}}">
                                             @csrf
                                                 <div class="form-floating mb-3">
                                                     <div class="form-floating mb-3 mb-md-0">
@@ -72,13 +72,13 @@
                                             <div class="mt-4 mb-0">
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-primary">
-                                                        {{ __('Register') }}
+                                                        {{ __('Registrar-se') }}
                                                     </button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="{{route('login')}}">Have an account? Go to login</a></div>
+                                        <div class="small"><a href="{{route('admin.login')}}">Have an account? Go to login</a></div>
                                     </div>
                                 </div>
                             </div>
